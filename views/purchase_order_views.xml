@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_order_form_bispro_report_buttons" model="ir.ui.view">
+        <field name="name">purchase.order.form.bispro.report.buttons</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_bispro_po_view_html"
+                        type="object"
+                        string="Bispro HTML"
+                        class="btn-secondary"
+                        groups="purchase.group_purchase_user"/>
+                <button name="action_bispro_po_view_pdf"
+                        type="object"
+                        string="Bispro PDF"
+                        class="btn-secondary"
+                        groups="purchase.group_purchase_user"/>
+                <button name="action_bispro_po_export_xlsx"
+                        type="object"
+                        string="Bispro Excel"
+                        class="btn-secondary"
+                        groups="purchase.group_purchase_user"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

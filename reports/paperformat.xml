@@ -1,16 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="paperformat_bispro_po_a4" model="report.paperformat">
-        <field name="name">Bispro PO A4</field>
+
+    <record id="paperformat_bispro_so_a4" model="report.paperformat">
+        <field name="name">Bispro SO A4</field>
         <field name="default" eval="False"/>
         <field name="format">A4</field>
         <field name="orientation">Portrait</field>
+
         <field name="margin_top">10</field>
         <field name="margin_bottom">10</field>
         <field name="margin_left">8</field>
         <field name="margin_right">8</field>
+
         <field name="header_line" eval="False"/>
         <field name="header_spacing">0</field>
+
         <field name="dpi">96</field>
     </record>
+
 </odoo>

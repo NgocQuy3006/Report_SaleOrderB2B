@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_bispro_sale_order" model="ir.actions.report">
+
+        <field name="name">Bispro Sale Order</field>
+
+        <field name="model">sale.order</field>
+
+        <field name="report_type">qweb-pdf</field>
+
+        <field name="report_name">saleorder_report.report_sale_order_big4</field>
+
+        <field name="report_file">saleorder_report.report_sale_order_big4</field>
+
+        <field name="print_report_name">(object.name or 'Sale Order')</field>
+
+        <field name="paperformat_id" ref="saleorder_report.paperformat_bispro_so_a4"/>
+
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+
+        <field name="binding_type">report</field>
+
+    </record>
+
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_server_bispro_so_html" model="ir.actions.server">
+        <field name="name">Xuất ra bản HTML</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = record.action_bispro_so_view_html()
+        </field>
+    </record>
+
+    <record id="action_server_bispro_so_pdf" model="ir.actions.server">
+        <field name="name">Xuất ra bản PDF</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = record.action_bispro_so_view_pdf()
+        </field>
+    </record>
+
+    <record id="action_server_bispro_so_excel" model="ir.actions.server">
+        <field name="name">Xuất ra bản Excel</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = record.action_bispro_so_export_xlsx()
+        </field>
+    </record>
+</odoo>

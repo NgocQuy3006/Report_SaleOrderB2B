@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_sale_order_big4">
+
+        <t t-call="web.html_container">
+
+            <t t-foreach="docs" t-as="o">
+
+                <t t-call="saleorder_report.report_sale_order_big4_document"/>
+
+            </t>
+
+        </t>
+
+    </template>
+
+
+    <template id="report_sale_order_big4_document">
+
+        <t t-set="v" t-value="o._bispro_so_report_values()"/>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+        <div class="page"
+             lang="vi"
+             style="font-family: Arial, Helvetica, sans-serif; font-size:10.5px; color:#0F172A; width:100%; margin:0; padding:0;">
+
+            <table style="font-family: Arial, Helvetica, sans-serif; width:100%; border-collapse:collapse; table-layout:fixed; margin:0; padding:0;">
+                <tr>
+                    <td style="height:7px; background:#0F172A; border:0; padding:0; width:78%;"></td>
+                    <td style="height:7px; background:#F59E0B; border:0; padding:0; width:22%;"></td>
+                </tr>
+            </table>
+
+            <table style="font-family: Arial, Helvetica, sans-serif; width:100%; border-collapse:collapse; table-layout:fixed; border-left:1px solid #0F172A; border-right:1px solid #0F172A; border-bottom:1px solid #0F172A;">
+
+                <tr>
+
+                    <td style="width:58%; padding:9px 11px; vertical-align:middle; border-right:1px solid #0F172A; min-height:80px;">
+
+                        <t t-if="v.get('logo_data_uri')">
+
+                            <img t-att-src="v.get('logo_data_uri')"
+                                 style="max-height:42px; max-width:185px; display:block; margin-bottom:5px;"/>
+
+                        </t>
+
+                        <div style="font-size:13px; font-weight:bold; color:#0F172A; line-height:1.2;">
+
+                            <span t-out="o._bispro_pdf_text(v.get('company_name'))"/>
+
+                        </div>
+
+                        <div style="color:#64748B; line-height:1.2;">
+
+                            <span t-out="o._bispro_pdf_text(v.get('company_address'))"/>
+
+                        </div>
+
+                        <div style="color:#64748B; line-height:1.2;">
+
+                            Tax ID:
+                            <span t-out="o._bispro_pdf_text(v.get('company_vat'))"/>
+
+                        </div>
+
+                    </td>
+
+                    <td style="width:42%; padding:9px 11px; vertical-align:middle; text-align:right;">
+
+                        <div style="font-size:25px; font-weight:900; letter-spacing:1.4px; color:#0F172A; line-height:1.15;">
+
+                            SALE ORDER
+
+                        </div>
+
+                        <div style="display:inline-block; margin-top:5px; padding:4px 9px; background:#1E3A8A; color:#FFFFFF; font-weight:bold;">
+
+                            <span t-out="o._bispro_pdf_text(v.get('name'))"/>
+
+                        </div>
+
+                        <div style="margin-top:7px; line-height:1.25;">
+
+                            Order Date:
+                            <b>
+                                <span t-out="o._bispro_pdf_text(v.get('date_order') and v.get('date_order').strftime('%d/%m/%Y') or '')"/>
+                            </b>
+
+                        </div>
+
+                        <div style="line-height:1.25;">
+
+                            Status:
+                            <b>
+                                <span t-out="o._bispro_pdf_text(v.get('state'))"/>
+                            </b>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <table style="font-family: Arial, Helvetica, sans-serif; width:100%; border-collapse:collapse; table-layout:fixed; margin-top:8px;">
+
+                <tr>
+
+                    <td colspan="4"
+                        style="background:#0F172A; color:#FFFFFF; font-weight:bold; text-transform:uppercase; letter-spacing:.3px; border:1px solid #0F172A; padding:5px 7px;">
+
+                        1. Document Control
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="width:25%; background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        SO Number
+
+                    </td>
+
+                    <td style="width:25%; border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('name'))"/>
+
+                    </td>
+
+                    <td style="width:25%; background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Salesperson
+
+                    </td>
+
+                    <td style="width:25%; border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('salesperson'))"/>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Currency
+
+                    </td>
+
+                    <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('currency_name'))"/>
+
+                    </td>
+
+                    <td style="background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Payment Terms
+
+                    </td>
+
+                    <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('payment_term'))"/>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Delivery Date
+
+                    </td>
+
+                    <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('commitment_date') and v.get('commitment_date').strftime('%d/%m/%Y') or '')"/>
+
+                    </td>
+
+                    <td style="background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Incoterm
+
+                    </td>
+
+                    <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('incoterm'))"/>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <table style="font-family: Arial, Helvetica, sans-serif; width:100%; border-collapse:collapse; table-layout:fixed; margin-top:8px;">
+
+                <tr>
+
+                    <td colspan="2"
+                        style="background:#0F172A; color:#FFFFFF; font-weight:bold; text-transform:uppercase; border:1px solid #0F172A; padding:5px 7px;">
+
+                        2. Customer Information
+
+                    </td>
+
+                    <td colspan="2"
+                        style="background:#0F172A; color:#FFFFFF; font-weight:bold; text-transform:uppercase; border:1px solid #0F172A; padding:5px 7px;">
+
+                        3. Company Information
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="width:25%; background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Customer
+
+                    </td>
+
+                    <td style="width:25%; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('customer_name'))"/>
+
+                    </td>
+
+                    <td style="width:25%; background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Company
+
+                    </td>
+
+                    <td style="width:25%; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('company_name'))"/>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Address
+
+                    </td>
+
+                    <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('customer_address'))"/>
+
+                    </td>
+
+                    <td style="background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Address
+
+                    </td>
+
+                    <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('company_address'))"/>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Tax ID
+
+                    </td>
+
+                    <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('customer_vat'))"/>
+
+                    </td>
+
+                    <td style="background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Tax ID
+
+                    </td>
+
+                    <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('company_vat'))"/>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Phone / Email
+
+                    </td>
+
+                    <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('customer_phone'))"/>
+                        /
+                        <span t-out="o._bispro_pdf_text(v.get('customer_email'))"/>
+
+                    </td>
+
+                    <td style="background:#E2E8F0; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                        Phone / Email
+
+                    </td>
+
+                    <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('company_phone'))"/>
+                        /
+                        <span t-out="o._bispro_pdf_text(v.get('company_email'))"/>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <table style="font-family: Arial, Helvetica, sans-serif; width:100%; border-collapse:collapse; table-layout:fixed; margin-top:8px;">
+
+                <thead>
+
+                    <tr>
+
+                        <th style="width:5%; background:#1E3A8A; color:#FFFFFF; font-weight:bold; text-align:center; border:1px solid #0F172A; padding:5px 5px;">No.</th>
+
+                        <th style="width:13%; background:#1E3A8A; color:#FFFFFF; font-weight:bold; text-align:center; border:1px solid #0F172A; padding:5px 5px;">Product Code</th>
+
+                        <th style="width:34%; background:#1E3A8A; color:#FFFFFF; font-weight:bold; text-align:center; border:1px solid #0F172A; padding:5px 5px;">Description</th>
+
+                        <th style="width:8%; background:#1E3A8A; color:#FFFFFF; font-weight:bold; text-align:center; border:1px solid #0F172A; padding:5px 5px;">UoM</th>
+
+                        <th style="width:9%; background:#1E3A8A; color:#FFFFFF; font-weight:bold; text-align:center; border:1px solid #0F172A; padding:5px 5px;">Qty</th>
+
+                        <th style="width:11%; background:#1E3A8A; color:#FFFFFF; font-weight:bold; text-align:center; border:1px solid #0F172A; padding:5px 5px;">Unit Price</th>
+
+                        <th style="width:9%; background:#1E3A8A; color:#FFFFFF; font-weight:bold; text-align:center; border:1px solid #0F172A; padding:5px 5px;">Taxes</th>
+
+                        <th style="width:11%; background:#1E3A8A; color:#FFFFFF; font-weight:bold; text-align:center; border:1px solid #0F172A; padding:5px 5px;">Subtotal</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <t t-set="line_no" t-value="1"/>
+
+                    <t t-foreach="o.order_line" t-as="line">
+
+                        <t t-set="lv" t-value="line._bispro_line_report_values()"/>
+
+                        <t t-if="lv.get('display_type')">
+
+                            <tr>
+
+                                <td colspan="8"
+                                    style="background:#1E3A8A; color:#FFFFFF; font-weight:bold; border:1px solid #0F172A; padding:5px 6px;">
+
+                                    <span t-out="o._bispro_pdf_text(lv.get('description'))"/>
+
+                                </td>
+
+                            </tr>
+
+                        </t>
+
+                        <t t-else="">
+
+                            <tr>
+
+                                <td style="text-align:center; border:1px solid #0F172A; padding:5px 6px;">
+
+                                    <span t-out="o._bispro_pdf_text(line_no)"/>
+
+                                </td>
+
+                                <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                                    <span t-out="o._bispro_pdf_text(lv.get('product_code'))"/>
+
+                                </td>
+
+                                <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                                    <span t-out="o._bispro_pdf_text(lv.get('description'))"/>
+
+                                </td>
+
+                                <td style="text-align:center; border:1px solid #0F172A; padding:5px 6px;">
+
+                                    <span t-out="o._bispro_pdf_text(lv.get('uom'))"/>
+
+                                </td>
+
+                                <td style="text-align:right; border:1px solid #0F172A; padding:5px 6px;">
+
+                                    <span t-out="o._bispro_pdf_text(lv.get('qty'))"/>
+
+                                </td>
+
+                                <td style="text-align:right; border:1px solid #0F172A; padding:5px 6px;">
+
+                                    <span t-out="o._bispro_pdf_text(lv.get('price_unit_display'))"/>
+
+                                </td>
+
+                                <td style="border:1px solid #0F172A; padding:5px 6px;">
+
+                                    <span t-out="o._bispro_pdf_text(lv.get('taxes'))"/>
+
+                                </td>
+
+                                <td style="text-align:right; border:1px solid #0F172A; padding:5px 6px;">
+
+                                    <span t-out="o._bispro_pdf_text(lv.get('subtotal_display'))"/>
+
+                                </td>
+
+                            </tr>
+
+                            <t t-set="line_no" t-value="line_no + 1"/>
+
+                        </t>
+
+                    </t>
+
+                    <tr>
+
+                        <td colspan="7"
+                            style="background:#E2E8F0; font-weight:bold; text-align:right; border:1px solid #0F172A; padding:6px 7px;">
+
+                            Untaxed Amount
+
+                        </td>
+
+                        <td style="background:#E2E8F0; font-weight:bold; text-align:right; border:1px solid #0F172A; padding:6px 7px;">
+
+                            <span t-out="o._bispro_pdf_text(v.get('amount_untaxed_display'))"/>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td colspan="7"
+                            style="background:#E2E8F0; font-weight:bold; text-align:right; border:1px solid #0F172A; padding:6px 7px;">
+
+                            Taxes
+
+                        </td>
+
+                        <td style="background:#E2E8F0; font-weight:bold; text-align:right; border:1px solid #0F172A; padding:6px 7px;">
+
+                            <span t-out="o._bispro_pdf_text(v.get('amount_tax_display'))"/>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td colspan="7"
+                            style="background:#0F172A; color:#FFFFFF; font-weight:bold; text-align:right; border:1px solid #0F172A; padding:8px 7px; font-size:12px;">
+
+                            TOTAL
+
+                        </td>
+
+                        <td style="background:#0F172A; color:#FFFFFF; font-weight:bold; text-align:right; border:1px solid #0F172A; padding:8px 7px; font-size:12px;">
+
+                            <span t-out="o._bispro_pdf_text(v.get('amount_total_display'))"/>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <table style="font-family: Arial, Helvetica, sans-serif; width:100%; border-collapse:collapse; table-layout:fixed; margin-top:10px;">
+
+                <tr>
+
+                    <td style="background:#0F172A; color:#FFFFFF; font-weight:bold; text-transform:uppercase; border:1px solid #0F172A; padding:5px 7px;">
+
+                        4. Terms, Conditions &amp; Notes
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td style="border:1px solid #F59E0B; background:#FFFBEB; padding:8px 10px; min-height:30px;">
+
+                        <span t-out="o._bispro_pdf_text(v.get('notes') or 'Please deliver products/services according to this Sale Order and agreed commercial terms.')"/>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </template>
+
+</odoo>
